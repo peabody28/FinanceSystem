@@ -1,0 +1,18 @@
+﻿@using entities
+@using entities.Interfaces
+@model IEnumerable<IUser>
+
+
+<a href="/Login">Login</a><br/>    
+<a href="/SignUp">SignUp</a><br/>  
+<a href="/FinanceOperation">Finance Operations</a><br/>
+<br/>
+<h1>Users List</h1>
+@{
+    foreach(var user in Model)
+    {
+        @(string.Format("Name: {0}",user.Name))<br>
+        @(string.Format("Id: {0}",user.Id))<br>
+        <br>
+    }
+}

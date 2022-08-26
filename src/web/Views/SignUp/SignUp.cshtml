@@ -1,0 +1,25 @@
+﻿@using System.Web.Optimization;
+@using System.Web;
+@model web.Models.SignUp.SignUpModel;
+
+@{
+    ViewBag.Title = "SignUp";
+}
+<head>
+    <script src="/lib/jquery/jquery.js"></script>
+</head>
+
+<body>
+    <div>
+    <form method='POST' id="signUpForm">
+        <input type="text" name="@nameof(Model.Name)" />
+        <input type="submit" value="register" />
+    </form>
+</div>
+
+<div id="message"></div>
+
+<script src="/scripts/signup/signup.js"></script>
+</body>
+
+ 

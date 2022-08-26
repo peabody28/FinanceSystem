@@ -1,0 +1,25 @@
+﻿@using System.Web.Optimization;
+@using System.Web;
+@model web.Models.FinanceOperation.CreateFinanceOperationModel;
+@{
+    ViewBag.Title = "Create Finance Operation";
+}
+<head>
+    <script src="/lib/jquery/jquery.js"></script>
+</head>
+
+<body>
+    <div>
+    <form method='POST' id="createFinanceOperationForm">
+        <input type="text" name="@nameof(Model.UserName)" />
+        <input type="text" name="@nameof(Model.Amount)" />
+        <input type="submit" value="create" />
+    </form>
+</div>
+
+<div id="message"></div>
+
+<script src="/scripts/financeOperation/financeOperation.js"></script>
+</body>
+
+ 

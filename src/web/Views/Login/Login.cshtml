@@ -1,0 +1,25 @@
+﻿@using System.Web.Optimization;
+@using System.Web;
+@model web.Models.Login.LoginModel;
+
+@{
+    ViewBag.Title = "Login";
+}
+<head>
+    <script src="/lib/jquery/jquery.js"></script>
+</head>
+
+<body>
+    <div>
+    <form method='POST' id="loginForm">
+        <input type="text" name="@nameof(Model.Name)" />
+        <input type="submit" value="Поиск" />
+    </form>
+</div>
+
+<div id="message"></div>
+
+<script src="/scripts/login/login.js"></script>
+</body>
+
+ 

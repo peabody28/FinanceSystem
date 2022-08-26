@@ -1,0 +1,7 @@
+.idea/
+.vs/
+*apphost
+*/bin
+*/obj
+*/*.user
+*/appsettings*.json
