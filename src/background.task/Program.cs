@@ -9,7 +9,6 @@ using repositories;
 using repositories.Interfaces;
 using repositories.Repositories;
 using System;
-using System.Threading.Tasks;
 
 namespace background.task
 {
@@ -50,14 +49,12 @@ namespace background.task
 
             #endregion
 
-            var canceled = false;
-            Console.CancelKeyPress += (_, e) => { e.Cancel = true; canceled = true; };
-
             var financeOperationOperation = Container.GetRequiredService<IFinanceOperationOperation>();
             var financeOperationRepository = Container.GetRequiredService<IFinanceOperationRepository>();
-            Task.Run(() => new ApprovingFinanceOperationTask(financeOperationRepository, financeOperationOperation, configuration).Start());
 
-            while (!canceled) { }
+            var task = new ApprovingFinanceOperationTask(financeOperationRepository, financeOperationOperation, configuration).Create();
+            task.Start();
+            task.Wait();
         }
     }
 }

@@ -25,27 +25,26 @@ namespace background.task.tasks
             FinanceOperationRepository = financeOperationRepository;
         }
 
-        public void Start()
+        public Task Create()
         {
-            Console.WriteLine("Start listening");
+            var approveFinanceOperationRequestTopic = Configuration.GetSection("ApproveFinanceOperationRequestTopicName").Value;
 
-            using (msgBus = new MessageBus<string>())
+            Console.WriteLine($"Start listening topic: {approveFinanceOperationRequestTopic}");
+            return new Task(() =>
             {
-                var approveFinanceOperationRequestTopic = Configuration.GetSection("ApproveFinanceOperationRequestTopicName").Value;
-                Task.Run(() =>
+                using (msgBus = new MessageBus<string>())
                 {
-                    try 
+                    try
                     {
                         msgBus.SubscribeOnTopic<string>(approveFinanceOperationRequestTopic, (msg) => ApproveFinanceOperation(msg), CancellationToken.None);
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         Console.WriteLine(ex.Message);
                         throw ex;
                     }
-                });
-                while (true) ;
-            }
+                }
+            });
         }
 
         private bool ApproveFinanceOperation(string guid)

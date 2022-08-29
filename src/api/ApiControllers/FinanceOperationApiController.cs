@@ -1,4 +1,5 @@
 ﻿using api.Models.FinanceOperationApi;
+using core;
 using entities.Interfaces;
 using operations.Interfaces;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Web.Http;
 
 namespace api.ApiControllers
 {
-    public class FinanceOperationApiController : ApiController
+    public class FinanceOperationApiController : BaseApiController
     {
         private IFinanceOperationOperation FinanceOperationOperation { get; set; }
 
@@ -25,7 +26,7 @@ namespace api.ApiControllers
             return FinanceOperationOperation.FinanceOperations();
         }
 
-        [HttpGet]
+        [HttpPost]
         public FinanceOperationModel Create(CreateFinanceOperationModel model)
         {
             var user = UserOperation.GetObject(model.Username);

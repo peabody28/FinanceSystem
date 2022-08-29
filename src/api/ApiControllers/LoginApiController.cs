@@ -1,5 +1,6 @@
 ﻿using api.Models.LoginApi;
 using auth;
+using core;
 using entities.Interfaces;
 using Microsoft.IdentityModel.Tokens;
 using operations.Interfaces;
@@ -11,7 +12,7 @@ using System.Web.Http;
 
 namespace api.ApiControllers
 {
-    public class LoginApiController : ApiController
+    public class LoginApiController : BaseApiController
     {
         private IUserOperation UserOperation { get; set; }
 
@@ -20,7 +21,7 @@ namespace api.ApiControllers
             UserOperation = userOperation;
         }
 
-        [HttpGet]
+        [HttpPost]
         public TokenModel Token(UserModel model)
         {
             var identity = GetIdentity(model.Name, model.Password);

@@ -1,4 +1,5 @@
 ﻿using api.Models.UserApi;
+using core;
 using entities.Interfaces;
 using operations.Interfaces;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Web.Http;
 
 namespace api.ApiControllers
 {
-    public class UserApiController : ApiController
+    public class UserApiController : BaseApiController
     {
         private IUserOperation UserOperation { get; set; }
 
@@ -21,7 +22,7 @@ namespace api.ApiControllers
             return UserOperation.Read();
         }
 
-        [HttpGet]
+        [HttpPost]
         public IUser User(UserModel model)
         {
             return UserOperation.GetObject(model.Name);

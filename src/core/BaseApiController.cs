@@ -3,7 +3,8 @@
 namespace core
 {
     [ApiController]
-    public abstract class BaseApiController
+    [Route("[controller]/[action]")]
+    public abstract class BaseApiController : ControllerBase
     {
 
     }
