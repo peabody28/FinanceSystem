@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\entities\entities.csproj" />
+    <ProjectReference Include="..\logger\logger.csproj" />
   </ItemGroup>
 
   <ItemGroup>

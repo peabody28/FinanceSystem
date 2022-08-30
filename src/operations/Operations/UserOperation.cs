@@ -21,6 +21,11 @@ namespace operations.Operations
             return UserRepository.GetObject(name);
         }
 
-        public IUser Create(string name) => UserRepository.Create(name);
+        public IUser Create(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return null;
+            return UserRepository.Create(name);
+        }
     }
 }

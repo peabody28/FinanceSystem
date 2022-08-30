@@ -25,7 +25,6 @@ namespace repositories.Repositories
 
         public IFinanceOperation Create(IUser user, decimal amount)
         {
-            var transaction = Bank.Database.BeginTransaction();
             var chain = ChainRepository.Create();
 
             var entity = Container.GetRequiredService<IFinanceOperation>();
@@ -36,16 +35,8 @@ namespace repositories.Repositories
 
             var financeOperation = Bank.FinanceOperation.Add(entity as FinanceOperationEntity);
 
-            try
-            {
-                Bank.SaveChanges();
-                transaction.Commit();
-                return financeOperation.Entity;
-            }
-            catch
-            {
-                return null;
-            }
+            Bank.SaveChanges();
+            return financeOperation.Entity;
         }
 
         public IEnumerable<IFinanceOperation> FinanceOperations()

@@ -1,6 +1,8 @@
 ﻿using entities;
+using logger.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace repositories
 {
@@ -8,9 +10,12 @@ namespace repositories
     {
         private IConfiguration Configuration { get; set; }
 
-        public Bank(IConfiguration config)
+        public ILoggingOperation LoggingOperation { get; set; }
+
+        public Bank(IConfiguration config, ILoggingOperation loggingOperation)
         {
             Configuration = config;
+            LoggingOperation = loggingOperation;
         }
 
         public DbSet<UserEntity> User { get; set; }
@@ -22,6 +27,7 @@ namespace repositories
         {
             var connString = Configuration.GetConnectionString("Bank");
             optionsBuilder.UseSqlServer(connString);
+            optionsBuilder.LogTo(LoggingOperation.Log, LogLevel.Debug);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

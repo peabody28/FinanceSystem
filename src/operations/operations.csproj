@@ -11,6 +11,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\core\core.csproj" />
+    <ProjectReference Include="..\helpers\helpers.csproj" />
+    <ProjectReference Include="..\logger\logger.csproj" />
     <ProjectReference Include="..\MessageBroker.Kafka\MessageBroker.Kafka.csproj" />
     <ProjectReference Include="..\repositories\repositories.csproj" />
   </ItemGroup>

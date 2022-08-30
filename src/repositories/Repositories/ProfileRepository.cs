@@ -13,9 +13,10 @@ namespace repositories.Repositories
 
         private Bank Bank { get; set; }
 
-        public ProfileRepository(Bank database)
+        public ProfileRepository(Bank database, IServiceProvider serviceProvider)
         {
             Bank = database;
+            Container = serviceProvider;
         }
 
         public IProfile GetObject(string name, string passwordHash)
@@ -28,6 +29,8 @@ namespace repositories.Repositories
         {
             var entity = Container.GetRequiredService<IProfile>();
             entity.Id = Guid.NewGuid();
+            entity.User = user;
+            entity.PasswordHash = passwordHash;
 
             var profile = Bank.Profile.Add(entity as ProfileEntity);
             Bank.SaveChanges();
