@@ -1,6 +1,8 @@
 ﻿using background.task.tasks;
 using entities;
 using entities.Interfaces;
+using logger.Interfaces;
+using logger.Operations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using operations.Interfaces;
@@ -44,6 +46,7 @@ namespace background.task
             services.AddScoped<IFinanceOperation, FinanceOperationEntity>();
 
             services.AddSingleton<IConfiguration>(configuration);
+            services.AddScoped<ILoggingOperation, LoggingOperation>();
 
             Container = services.BuildServiceProvider();
 

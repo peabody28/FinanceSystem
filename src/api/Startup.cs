@@ -3,6 +3,8 @@ using core;
 using entities;
 using entities.Interfaces;
 using FluentValidation.AspNetCore;
+using logger.Interfaces;
+using logger.Operations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -55,6 +57,8 @@ namespace api
             services.AddScoped<IProfile, ProfileEntity>();
             services.AddScoped<IChain, ChainEntity>();
             services.AddScoped<IFinanceOperation, FinanceOperationEntity>();
+
+            services.AddScoped<ILoggingOperation, LoggingOperation>();
 
             services.AddMvc(opt =>
             {
